@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome animation</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      *{
+        box-sizing: border-box;
+      }
+      html, body{
+        margin: 0;
+        font-family: 'Nunito Sans', sans-serif;
+      }
+      .container{
+        max-width: 1440px;
+        margin: 0 auto;
+      }
+      header{
+        border-bottom: 1px solid #eee;
+        position: relative;
+        z-index: 99;
+        background: #fff;
+      }
+      .featured{
+        position: relative;
+        z-index: 9;
+        background: #68ADA1;
+        text-align: center;
+        height: 54px;
+        opacity: 0;
+        animation: slide-down ease-in-out 0.4s forwards;
+      }
+      .featured img{
+        max-width: 1440px;
+      }
+      footer{
+        border-top: 1px solid #eee;
+      }
+      img{
+        width: 100%;
+      }
+      .welcome{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .content{
+        justify-self: end;
+        max-width: 600px;
+        padding: 300px 20px;
+      }
+      .perks{
+        display: grid;
+        padding: 4px;
+        grid-template-columns: 1fr 1fr;
+      }
+      .column1{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 3fr 4fr 3fr;
+      }
+      .column2{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 3.5fr 3fr 3.5fr;
+      }
+
+      .column1 > div:nth-child(1){
+        opacity: 0;
+        animation: fade-in-up ease-in-out 0.4s forwards;
+        animation-delay: 0.2s;
+      }
+      .column1 > div:nth-child(2){
+        opacity: 0;
+        animation: fade-in-up ease-in-out 0.4s forwards;
+        animation-delay: 0.4s;
+      }
+      .column1 > div:nth-child(3){
+        opacity: 0;
+        animation: fade-in-up ease-in-out 0.4s forwards;
+        animation-delay: 0.6s;
+      }
+      .column2 > div:nth-child(1){
+        opacity: 0;
+        animation: fade-in-up ease-in-out 0.4s forwards;
+        animation-delay: 0.8s;
+      }
+      .column2 > div:nth-child(2){
+        opacity: 0;
+        animation: fade-in-up ease-in-out 0.4s forwards;
+        animation-delay: 1s;
+      }
+      .column2 > div:nth-child(3){
+        opacity: 0;
+        animation: fade-in-up ease-in-out 0.4s forwards;
+        animation-delay: 1.2s;
+      }
+
+      .column > div{
+        background: #eee;
+        position: relative;
+        border: 4px solid #fff;
+      }
+      .column > div:hover > .card_bg{
+        opacity: 1;
+      }
+      .card_bg{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        display: grid;
+        opacity: 0;
+        transition: all 0.4s ease-in-out;
+        cursor: pointer;
+      }
+      .card_content{
+        align-self: center;
+      }
+      .card_content h3{
+        margin: 4px;
+        font-size: 24px;
+      }
+      .card_content p{
+        margin: 4px;
+      }
+      .card_content a{
+        color: #fff;
+        text-decoration: none;
+      }
+      .title{
+        font-size: 36px;
+        font-family: 'Playfair Display', serif;
+        font-weight: 800;
+        margin: 0 0 20px 0;
+      }
+      .desc{
+        font-size: 16px;
+        margin: 10px 0;
+      }
+      form{
+        margin: 40px 0 10px 0;
+      }
+      input, button{
+        text-align: center;
+        color: #999;
+        width: 100%;
+        font-size: 16px;
+        padding: 13px;
+        margin: 5px 0;
+        border: 1px solid #CCD0D2;
+      }
+      button{
+        max-width: 240px;
+        color: #FF5B5D;
+        border: 2px solid  #FF5B5D;
+        cursor: pointer;
+        overflow: hidden;
+        transition: all ease-in-out 0.4s;
+        margin-right: 10px;
+      }
+      button:hover{
+        background: #FF5B5D;
+        color: #fff;
+      }
+      button:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.6) 50%, transparent);
+        opacity: 0;
+        animation: sheen 3s infinite ease-in-out;
+        animation-delay: 1s;
+        height: 160px;
+      }
+      .policy{
+        line-height: 15px;
+      }
+      .skip{
+        margin-top: 40px;
+        opacity: 0;
+        animation: fade-in-up ease-in-out 0.4s forwards;
+        animation-delay: 0.8s;
+      }
+
+      @keyframes fade-in-up {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes slide-down {
+        from {
+          opacity: 0;
+          transform: translateY(-25px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fade-out-down {
+        from {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+        to {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+      }
+      @keyframes scale-down {
+        from {
+          opacity: 0;
+          transform: scale(1.04);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+          .welcome{
+            grid-template-columns: 1fr;
+          }
+          .content{
+            max-width: 100%;
+            padding: 40px 20px 20px 20px;
+          }
+          .perks{
+            height: 760px;
+          }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <img src="images/header.png" />
+      </div>
+    </header>
+    <div class="featured">
+      <img src="images/alert.png" />
+    </div>
+
+    <div class="welcome">
+      <div class="content">
+        <h1 class="title">Oh no! Thinking about leaving?</h1>
+        <p class="desc">
+          We’d really hate to see you go. If there's anything we can do, please reach out to our Customer Concierge.
+        </p>
+        <form>
+          <button>KEEP SUBSCRIPTION</button>
+          <button>CANCEL</button>
+        </form>
+        <p class="policy">
+          <small>Cancelling your account does not stop the box you've already purchased from shipping out.
+Cancellations will go into effect to ensure you are not billed for the next season's box.
+Cancellations of annual subscriptions go into effect at the end of your annual term and are nonrefundable. Please contact us if you have any issues with your membership.</small>
+        </p>
+      </div>
+      <div class="perks">
+        <div class="column column1">
+          <div style="background: #fff url(images/collage/1.png) no-repeat center center; background-size: cover;">
+            <div class="card_bg">
+              <div class="card_content">
+                <a href="https://fabfitfun.com/add-ons/">
+                <h3>Add-Ons</h3>
+                <p>
+                  Choose from over 100+ finds for up to 70% off
+                </p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div style="background: #fff url(images/collage/2.png) no-repeat center center; background-size: cover;">
+            <div class="card_bg">
+              <div class="card_content">
+                <a href="https://fabfitfun.com/add-ons/">
+                  <h3>FFF TV</h3>
+                  <p>
+                    Access a library of workouts right at your fingertips
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div style="background: #fff url(images/collage/3.png) no-repeat center center; background-size: cover;">
+            <div class="card_bg">
+              <div class="card_content">
+                <a href="https://fabfitfun.com/add-ons/">
+                  <h3>FFF Credits</h3>
+                  <p>
+                    Credit that can be used for future purchases
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column column2">
+          <div style="background: #fff url(images/collage/4.png) no-repeat center center; background-size: cover;">
+            <div class="card_bg">
+              <div class="card_content">
+                <a href="https://fabfitfun.com/add-ons/">
+                  <h3>Customization</h3>
+                  <p>
+                    Snag deals from some of our favorite box partners
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div style="background: #fff url(images/collage/5.png) no-repeat center center; background-size: cover;">
+            <div class="card_bg">
+              <div class="card_content">
+                <a href="https://fabfitfun.com/add-ons/">
+                  <h3>Sales</h3>
+                  <p>
+                    Shop our seasonal sale with discounts at up to 50% off
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div style="background: #fff url(images/collage/6.png) no-repeat center center; background-size: cover;">
+            <div class="card_bg">
+              <div class="card_content">
+                <a href="https://fabfitfun.com/add-ons/">
+                  <h3>Exclusive Offers</h3>
+                  <p>
+                    Snag deals from some of our favorite box partners
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <img src="images/footer.png" />
+      </div>
+      <div style="background: #E8E8E8">
+        <div class="container">
+          <img src="images/footer_copy.png" />
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
